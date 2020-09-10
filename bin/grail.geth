@@ -21,19 +21,18 @@ rngd -r /dev/urandom
 ifconfig eth0 $ipAddr netmask 255.255.255.0
 
 # start the geth client
-geth --maxpeers 0 --verbosity 0 &
+/bin/geth --maxpeers 0 --verbosity 0 &
 
 #for i in $(seq 0 ${1} ${2}); do
 	#echo "step ${i}: sleeping ${1} seconds";
 	#sleep $1;
 	#geth attach --exec admin.peers &> /bin/output.geth.admin.peers.txt
 #done
-printf '% 7s test\n' "jo"
 timestamp=0
 sleep 1.5s
 while :
 do
-  geth attach --exec admin.peers &> /bin/output-geth-admin-peers-$timestamp-$runId-$nodeId.txt
+  /bin/geth attach --exec admin.peers &> /bin/output-geth-admin-peers-$timestamp-$runId-$nodeId.txt
 	timestamp=$timestamp+1
   sleep 0.5s
 done
