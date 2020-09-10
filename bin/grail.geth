@@ -28,7 +28,7 @@ geth --maxpeers 0 --verbosity 0 &
 	#sleep $1;
 	#geth attach --exec admin.peers &> /bin/output.geth.admin.peers.txt
 #done
-printf '% 2s test\n' "jo"
+printf '% 7s test\n' "jo"
 timestamp=0
 sleep 1.5s
 while :
