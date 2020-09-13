@@ -26,7 +26,7 @@ sleep ${timeToSleep}
 while :
 do
 	timestampFmt=$( printf '%03d' "$timestamp" )
-  geth attach --exec admin.discinfo &> /bin/output-geth-admin-peers-$timestampFmt-$runId-$nodeId.txt &
+  geth attach --exec admin.discinfo &> /bin/output-geth-admin-discinfo-$timestampFmt-$runId-$nodeId.txt &
 	timestamp=$( echo "$timestamp+1" | bc -l )
 	printf '        --------------------------t=%s, tts=%.4f sleep pre --------------------------\n' "$timestampFmt" "$timeToSleep"
   sleep ${timeToSleep}
