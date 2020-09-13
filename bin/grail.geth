@@ -35,5 +35,5 @@ do
 	timestampFmt=$( printf '%03d' "$timestamp" )
   geth attach --exec admin.peers &> /bin/output-geth-admin-peers-$timestampFmt-$runId-$nodeId.txt
 	timestamp=$( echo "$timestamp+1" | bc -l )
-  sleep 0.5s
+  sleep 0.05s
 done
