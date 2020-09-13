@@ -30,13 +30,13 @@ geth --maxpeers 0 --verbosity 4 &
 #done
 timestamp=0
 timeToSleep=0.01
-#sleep 0.25s
+sleep ${timeToSleep}s
 while :
 do
 	timestampFmt=$( printf '%03d' "$timestamp" )
-  geth attach --exec admin.peers &> /bin/output-geth-admin-peers-$timestampFmt-$runId-$nodeId.txt
+  geth attach --exec admin.peers &> /bin/output-geth-admin-peers-$timestampFmt-$runId-$nodeId.txt &
 	timestamp=$( echo "$timestamp+1" | bc -l )
 	printf '        --------------------------t=%s, tts=%.4f sleep pre --------------------------\n' "$timestampFmt" "$timeToSleep"
-  #sleep 0.01s
+  sleep 0.01s
 	printf '        ++++++++++++++++++++++++++t=%s, tts=%.4f sleep post++++++++++++++++++++++++++\n' "$timestampFmt" "$timeToSleep"
 done
