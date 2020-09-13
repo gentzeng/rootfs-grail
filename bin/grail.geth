@@ -33,6 +33,6 @@ do
   geth attach --exec admin.discinfo &> /bin/output-geth-admin-discinfo-$timestampFmt-$runId-$nodeId.txt &
 	timestamp=$( echo "$timestamp+1" | bc -l )
 	printf '        --------------------------t=%s, tts=%.4f sleep pre --------------------------\n' "$timestampFmt" "$timeToSleep"
-  sleep ${timeToSleep}
+  #sleep ${timeToSleep}
 	printf '        ++++++++++++++++++++++++++t=%s, tts=%.4f sleep post++++++++++++++++++++++++++\n' "$timestampFmt" "$timeToSleep"
 done
