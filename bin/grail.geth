@@ -18,7 +18,7 @@ rngd -r /dev/urandom
 ifconfig eth0 $ipAddr netmask 255.255.255.0
 
 # start the geth client
-geth --nousb --networkid 15 --verbosity 5 &
+geth --nousb --networkid 15 --verbosity 5 --bootnodes $bootnodes &
 
 #for i in $(seq 0 ${1} ${2}); do
 	#echo "step ${i}: sleeping ${1} seconds";
