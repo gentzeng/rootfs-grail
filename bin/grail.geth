@@ -13,15 +13,12 @@ rngd -r /dev/urandom
 rngd -r /dev/urandom
 rngd -r /dev/urandom
 rngd -r /dev/urandom
-rngd -r /dev/urandom
-rngd -r /dev/urandom
-rngd -r /dev/urandom
 
 # configure network
 ifconfig eth0 $ipAddr netmask 255.255.255.0
 
 # start the geth client
-geth --maxpeers 0 --verbosity 4 &
+geth --nousb --networkid 15 --verbosity 5 &
 
 #for i in $(seq 0 ${1} ${2}); do
 	#echo "step ${i}: sleeping ${1} seconds";
@@ -30,13 +27,13 @@ geth --maxpeers 0 --verbosity 4 &
 #done
 timestamp=0
 timeToSleep=0.001
-sleep ${timeToSleep}s
+sleep ${timeToSleep}
 while :
 do
 	timestampFmt=$( printf '%03d' "$timestamp" )
   geth attach --exec admin.peers &> /bin/output-geth-admin-peers-$timestampFmt-$runId-$nodeId.txt &
 	timestamp=$( echo "$timestamp+1" | bc -l )
 	printf '        --------------------------t=%s, tts=%.4f sleep pre --------------------------\n' "$timestampFmt" "$timeToSleep"
-  sleep 0.001s
+  sleep ${timeToSleep}
 	printf '        ++++++++++++++++++++++++++t=%s, tts=%.4f sleep post++++++++++++++++++++++++++\n' "$timestampFmt" "$timeToSleep"
 done
