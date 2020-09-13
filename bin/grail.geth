@@ -21,7 +21,7 @@ ifconfig eth0 $ipAddr netmask 255.255.255.0
 geth --nousb --networkid 15 --verbosity 5 --bootnodes $bootnodes &> /bin/output.geth &
 
 timestamp=0
-timeToSleep=0.001
+timeToSleep=0.00001
 sleep ${timeToSleep}
 while :
 do
