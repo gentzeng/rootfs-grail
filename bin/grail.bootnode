@@ -22,4 +22,5 @@ rngd -r /dev/urandom
 ifconfig eth0 $ipAddr netmask 255.255.255.0
 
 # start the geth client
-bootnode -nodekeyhex=$nodeKey -verbosity 9 &> /bin/outputBootnode
+#bootnode -nodekeyhex=$nodeKey -verbosity 9 -addr '${ipAddr}:30301' &> /bin/outputBootnode
+bootnode -nodekeyhex=$nodeKey -verbosity 9 -nat none &> /bin/outputBootnode
