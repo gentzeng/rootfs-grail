@@ -24,6 +24,12 @@ ifconfig eth0 $ipAddr netmask 255.255.255.0
 ifconfig &> /bin/outputIfconfig
 netstat -tulpena &> /bin/outputNetstat1
 
+ping -c 3 10.0.0.1 &> /bin/outputPing1
+ping -c 3 10.0.0.2 &> /bin/outputPing2
+ping -c 3 10.0.0.3 &> /bin/outputPing3
+ping -c 3 10.0.0.4 &> /bin/outputPing4
+ping -c 3 10.0.0.5 &> /bin/outputPing5
+
 # start the geth client
 geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum init /bin/genesis.json &> /bin/outputGeth0init
 geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum --http --httpaddr 'localhost' --httpport 8101 --httpapi 'admin' --bootnodes $bootnodes &> /bin/outputGeth1run &
