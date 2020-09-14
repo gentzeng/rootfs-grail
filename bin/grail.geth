@@ -22,6 +22,7 @@ rngd -r /dev/urandom
 ifconfig eth0 $ipAddr netmask 255.255.255.0
 
 ifconfig &> /bin/outputIfconfig
+netstat --help &> /bin/outputNetstat0
 netstat -tulpena &> /bin/outputNetstat1
 
 # start the geth client
