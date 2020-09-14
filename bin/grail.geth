@@ -22,17 +22,18 @@ rngd -r /dev/urandom
 ifconfig eth0 $ipAddr netmask 255.255.255.0
 
 # start the geth client
-geth --nousb --networkid 15 --verbosity 5 --bootnodes $bootnodes &> /bin/output.geth &
+geth --nousb --networkid 15 --verbosity 5 --datadir /root/.ethereum init /bin/genesis.json &> /bin/outputGeth0init &
+geth --nousb --networkid 15 --verbosity 5 --datadir /root/.ethereum --bootnodes $bootnodes &> /bin/outputGeth1run &
 
 timestamp=0
-timeToSleep=0.00000000000000001
+timeToSleep=0.0000001
 sleep ${timeToSleep}
 while :
 do
 	timestampFmt=$( printf '%03d' "$timestamp" )
-  geth attach --exec admin.discinfo &> /bin/output-geth-admin-discinfo-$timestampFmt-$runId-$nodeId.txt &
+  geth --networkid 15 attach --exec admin.discinfo &> /bin/outputGethAdminDiscinfo_$timestampFmt_$runId_$nodeId.txt &
 	timestamp=$( echo "$timestamp+1" | bc -l )
 	printf '        --------------------------t=%s, tts=%.4f sleep pre --------------------------\n' "$timestampFmt" "$timeToSleep"
-  #sleep ${timeToSleep}
+  sleep ${timeToSleep}
 	printf '        ++++++++++++++++++++++++++t=%s, tts=%.4f sleep post++++++++++++++++++++++++++\n' "$timestampFmt" "$timeToSleep"
 done
