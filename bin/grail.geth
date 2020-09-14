@@ -21,6 +21,8 @@ rngd -r /dev/urandom
 # configure network
 ifconfig eth0 $ipAddr netmask 255.255.255.0
 
+ifconfig &> /bin/outputIfConfig
+
 # start the geth client
 geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum init /bin/genesis.json &> /bin/outputGeth0init
 geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum --rpc --rpcaddr 'localhost' --rpcport 8101 --rpcapi 'admin' --bootnodes $bootnodes &> /bin/outputGeth1run &
