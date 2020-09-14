@@ -22,7 +22,7 @@ rngd -r /dev/urandom
 ifconfig eth0 $ipAddr netmask 255.255.255.0
 
 # start the geth client
-geth --nousb --networkid 15 --verbosity 5 --datadir /root/.ethereum init /bin/genesis.json &> /bin/outputGeth0init &
+geth --nousb --networkid 15 --verbosity 5 --datadir /root/.ethereum init /bin/genesis.json &> /bin/outputGeth0init
 geth --nousb --networkid 15 --verbosity 5 --datadir /root/.ethereum --bootnodes $bootnodes &> /bin/outputGeth1run &
 
 timestamp=0
