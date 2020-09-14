@@ -21,12 +21,11 @@ rngd -r /dev/urandom
 # configure network
 ifconfig eth0 $ipAddr netmask 255.255.255.0
 
-ifconfig &> /bin/outputIfconfig
-
 # start the geth client
-geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum init /bin/genesis.json &> /bin/outputGeth0init
-#geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum --http --http.addr 'localhost' --http.port 8101 --http.api 'admin' --bootnodes $bootnodes &> /bin/outputGeth1run &
-geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum --nat none --bootnodes $bootnodes &> /bin/outputGeth1run &
+#geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum init /bin/genesis.json &> /bin/outputGeth0init
+#geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum --nat none --bootnodes $bootnodes &> /bin/outputGeth1run &
+geth --nousb --networkid 15123 --verbosity 0 --datadir /root/.ethereum init /bin/genesis.json
+geth --nousb --networkid 15123 --verbosity 0 --datadir /root/.ethereum --nat none --bootnodes $bootnodes &
 
 
 timestamp=0
