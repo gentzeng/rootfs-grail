@@ -23,7 +23,7 @@ ifconfig eth0 $ipAddr netmask 255.255.255.0
 
 # start the geth client
 geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum init /bin/genesis.json &> /bin/outputGeth0init
-geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum --rpc --rpcaddr ‘localhost’ --rpcport 8101 --rpcapi admin --bootnodes $bootnodes &> /bin/outputGeth1run &
+geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum --rpc --rpcaddr 'localhost' --rpcport 8101 --rpcapi 'admin' --bootnodes $bootnodes &> /bin/outputGeth1run &
 
 timestamp=0
 timeToSleep=0.0000001
@@ -31,7 +31,7 @@ sleep ${timeToSleep}
 while :
 do
 	timestampFmt=$( printf '%03d' "$timestamp" )
-  geth --datadir /root/.ethereum --networkid 15123 attach http://localhost:8101 --exec admin.discinfo &> /bin/outputGeth3AdminDiscinfo-${timestampFmt}-${runId}-$nodeId.txt &
+  geth --datadir /root/.ethereum --networkid 15123 attach 'http://localhost:8101' --exec admin.discinfo &> /bin/outputGeth3AdminDiscinfo-${timestampFmt}-${runId}-$nodeId.txt &
 	timestamp=$( echo "$timestamp+1" | bc -l )
 	printf '        --------------------------t=%s, tts=%.4f sleep pre --------------------------\n' "$timestampFmt" "$timeToSleep"
   sleep ${timeToSleep}
