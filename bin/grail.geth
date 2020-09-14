@@ -26,7 +26,7 @@ netstat -tulpena &> /bin/outputNetstat
 
 # start the geth client
 geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum init /bin/genesis.json &> /bin/outputGeth0init
-geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum --rpc --rpcaddr 'localhost' --rpcport 8101 --rpcapi 'admin' --bootnodes $bootnodes &> /bin/outputGeth1run &
+geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum --http --httpaddr 'localhost' --httpport 8101 --httpapi 'admin' --bootnodes $bootnodes &> /bin/outputGeth1run &
 
 timestamp=0
 timeToSleep=0.0000001
