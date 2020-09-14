@@ -26,7 +26,8 @@ ifconfig &> /bin/outputIfconfig
 
 # start the geth client
 geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum init /bin/genesis.json &> /bin/outputGeth0init
-geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum --http --http.addr 'localhost' --http.port 8101 --http.api 'admin' --bootnodes $bootnodes &> /bin/outputGeth1run &
+#geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum --http --http.addr 'localhost' --http.port 8101 --http.api 'admin' --bootnodes $bootnodes &> /bin/outputGeth1run &
+geth --nousb --networkid 15123 --verbosity 5 --datadir /root/.ethereum --bootnodes $bootnodes &> /bin/outputGeth1run &
 
 
 timestamp=0
@@ -36,7 +37,8 @@ while :
 do
 	timestampFmt=$( printf '%03d' "$timestamp" )
   netstat &> /bin/outputNetstat_${timestampFmt}_0 &
-  geth --datadir /root/.ethereum --networkid 15123 attach 'http://localhost:8101' --exec admin.discinfo &> /bin/outputGeth3AdminDiscinfo-${timestampFmt}-${runId}-$nodeId.txt &
+  #geth --datadir /root/.ethereum --networkid 15123 attach 'http://localhost:8101' --exec admin.discinfo &> /bin/outputGeth3AdminDiscinfo-${timestampFmt}-${runId}-$nodeId.txt &
+  geth --datadir /root/.ethereum --networkid 15123 attach --exec admin.discinfo &> /bin/outputGeth3AdminDiscinfo-${timestampFmt}-${runId}-$nodeId.txt &
 	timestamp=$( echo "$timestamp+1" | bc -l )
 	printf '        --------------------------t=%s, tts=%.4f sleep pre --------------------------\n' "$timestampFmt" "$timeToSleep"
   sleep ${timeToSleep}
