@@ -35,10 +35,7 @@ sleep ${timeToSleep}
 while :
 do
 	timestampFmt=$( printf '%03d' "$timestamp" )
-  netstat &> /bin/outputNetstat_${timestampFmt}_0
-  netstat -l &> /bin/outputNetstat_${timestampFmt}_1
-  netstat -lt &> /bin/outputNetstat_${timestampFmt}_2
-  netstat -la &> /bin/outputNetstat_${timestampFmt}_3
+  netstat &> /bin/outputNetstat_${timestampFmt}_0 &
   geth --datadir /root/.ethereum --networkid 15123 attach 'http://localhost:8101' --exec admin.discinfo &> /bin/outputGeth3AdminDiscinfo-${timestampFmt}-${runId}-$nodeId.txt &
 	timestamp=$( echo "$timestamp+1" | bc -l )
 	printf '        --------------------------t=%s, tts=%.4f sleep pre --------------------------\n' "$timestampFmt" "$timeToSleep"
