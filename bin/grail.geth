@@ -31,7 +31,7 @@ sleep ${timeToSleep}
 while :
 do
 	timestampFmt=$( printf '%03d' "$timestamp" )
-  geth --networkid 15 attach --exec admin.discinfo &> /bin/outputGethAdminDiscinfo_$timestampFmt_$runId_$nodeId.txt &
+  geth --networkid 15 attach --exec admin.discinfo &> /bin/outputGethAdminDiscinfo-${timestampFmt}-${runId}-$nodeId.txt &
 	timestamp=$( echo "$timestamp+1" | bc -l )
 	printf '        --------------------------t=%s, tts=%.4f sleep pre --------------------------\n' "$timestampFmt" "$timeToSleep"
   sleep ${timeToSleep}
